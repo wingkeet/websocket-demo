@@ -10,8 +10,8 @@ const WebSocket = require('ws') // https://github.com/websockets/ws
 // inspect the full certificate chain:
 // openssl s_client -showcerts -host localhost -port 8080 </dev/null
 const server = https.createServer({
-    cert: fs.readFileSync(path.join(__dirname, 'cert', 'selfsigned.crt')),
-    key: fs.readFileSync(path.join(__dirname, 'cert', 'selfsigned.key'))
+    cert: fs.readFileSync(path.join(__dirname, 'cert', 'fullchain.pem')),
+    key: fs.readFileSync(path.join(__dirname, 'cert', 'privkey.pem'))
 })
 const wss = new WebSocket.Server({ server })
 
