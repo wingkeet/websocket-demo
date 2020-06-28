@@ -26,7 +26,7 @@ wss.on('listening', () => {
 })
 
 wss.on('connection', (ws, req) => {
-    ws.on('message', async (message) => {
+    ws.on('message', (message) => {
         if (message.toLowerCase() === 'bye') {
             ws.send('bye')
         }
