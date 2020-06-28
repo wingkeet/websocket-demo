@@ -41,7 +41,7 @@ wss.on('connection', (ws, req) => {
 
     const address = `${req.connection.remoteAddress}:${req.connection.remotePort}`
     console.log(`[server] connection from ${address}`)
-    ws.send('hello') // send 'hello' to client
+    ws.send(`hello, you are ${address}`) // send greeting to client
 })
 
 server.listen(8080)
