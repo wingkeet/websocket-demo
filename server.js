@@ -22,7 +22,7 @@ wss.on('error', (err) => {
 wss.on('listening', () => {
     let address = wss.address()
     address = util.inspect(address, { depth: null })
-    console.log(`[server] Listening on ${address}`)
+    console.log(`[server] listening on ${address} at ${new Date()}`)
 })
 
 wss.on('connection', (ws, req) => {
