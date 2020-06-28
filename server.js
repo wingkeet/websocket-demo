@@ -27,8 +27,6 @@ wss.on('listening', () => {
 
 wss.on('connection', (ws, req) => {
     ws.on('message', async (message) => {
-        console.log(`[server] received '${message}'`)
-
         if (message === 'bye') {
             ws.send('bye')
         }
