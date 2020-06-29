@@ -24,7 +24,7 @@ function prompt() {
 // https://github.com/websockets/ws/blob/master/doc/ws.md#websocketclosecode-reason
 // https://developer.mozilla.org/en-US/docs/Web/API/CloseEvent#Properties
 function quit() {
-    ws.close(1000, 'done')
+    ws.close(1000, 'bye')
     rl.close()
 }
 
