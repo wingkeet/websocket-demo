@@ -5,10 +5,6 @@ const path = require('path')
 const util = require('util')
 const WebSocket = require('ws') // https://github.com/websockets/ws
 
-// When this WebSocket server is running, use the command below to
-// inspect the full certificate chain:
-// openssl s_client -showcerts -host localhost -port 8080 </dev/null
-
 const SECURE = false
 if (SECURE) {
     var server = require('https').createServer({
@@ -35,6 +31,7 @@ wss.on('connection', (ws, req) => {
     ws.on('message', (message) => {
         if (message.toLowerCase() === 'bye') {
             ws.send('bye')
+            ws.close(1000, 'bye')
         }
         else {
             const nums = message.split(' ')
@@ -48,4 +45,4 @@ wss.on('connection', (ws, req) => {
     ws.send(`hello, you are ${address}`) // send greeting to client
 })
 
-server.listen(8080)
+server.listen(8080, 'localhost')
