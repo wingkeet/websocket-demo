@@ -3,7 +3,8 @@
 const readline = require('readline')
 const WebSocket = require('ws') // https://github.com/websockets/ws
 
-const ws = new WebSocket('wss://localhost:8080', { rejectUnauthorized: false })
+//const ws = new WebSocket('wss://localhost:8080', { rejectUnauthorized: false })
+const ws = new WebSocket('ws://localhost:8080')
 const rl = readline.createInterface({
     input: process.stdin,
     output: process.stdout

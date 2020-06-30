@@ -1,7 +1,6 @@
 'use strict'
 
 const fs = require('fs')
-const https = require('https')
 const path = require('path')
 const util = require('util')
 const WebSocket = require('ws') // https://github.com/websockets/ws
@@ -9,10 +8,17 @@ const WebSocket = require('ws') // https://github.com/websockets/ws
 // When this WebSocket server is running, use the command below to
 // inspect the full certificate chain:
 // openssl s_client -showcerts -host localhost -port 8080 </dev/null
-const server = https.createServer({
-    cert: fs.readFileSync(path.join(__dirname, 'cert', 'fullchain.pem')),
-    key: fs.readFileSync(path.join(__dirname, 'cert', 'privkey.pem'))
-})
+
+const SECURE = false
+if (SECURE) {
+    var server = require('https').createServer({
+        cert: fs.readFileSync(path.join(__dirname, 'cert', 'fullchain.pem')),
+        key: fs.readFileSync(path.join(__dirname, 'cert', 'privkey.pem'))
+    })
+}
+else {
+    var server = require('http').createServer()
+}
 const wss = new WebSocket.Server({ server })
 
 wss.on('error', (err) => {
